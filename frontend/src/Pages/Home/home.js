@@ -2,13 +2,14 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import emptyImg from "../../assets/empty.png";
-import {Link, Card, CardMedia, Stack, Typography, Container } from '@mui/material';
+import {Link, Card, CardMedia, Stack, Typography, Container, CardContent, Paper } from '@mui/material';
 import {Button} from '@mui/material';
 import Modal from '@mui/material/Modal';
 import weatherBrand from '../../assets/weatherBrand.png';
 import CircularProgress from '@mui/material/CircularProgress';
-
-import { getWeatherData, getReadImgfile, getCamFourFiles } from '../../apis/apiProvider';
+import Carousel from 'react-material-ui-carousel'
+import { getWeatherData, getReadImgfile, getCamFourFiles, getTimeLapsImgs } from '../../apis/apiProvider';
+import { Timelapse } from './TimeLapse';
 const hostPath = 'https://denalicams.com';
 const style = {
   position: 'absolute',
@@ -37,22 +38,46 @@ export const Home = () => {
   const [windSpeed, setWindSpeed] = React.useState(0);
   const [barometer, setBarometer] = React.useState(0);
   const [isUpBarometer, setIsUpBarometer] = React.useState(false);
-  const [imagePath, setImagePath] = React.useState(emptyImg);
+  const [modalImg, setModalImg] = React.useState(emptyImg);
+  const [image1Path, setImage1Path] = React.useState(emptyImg);
+  const [image2Path, setImage2Path] = React.useState(emptyImg);
+  const [image3Path, setImage3Path] = React.useState(emptyImg);
+  const [image4Path, setImage4Path] = React.useState(emptyImg);
+  const [camTimeVal, setCamTimeVal] = React.useState('');
+  const [timelapsImgs, setTimelapsImgs] = React.useState([]);
+  const [timelapsOpen, setTimelapsOpen] = React.useState(false);
   const handleClose = () => {
     setEnlargeOpen(false);
   }
   
   React.useEffect(() => {
-    loadCamForData();
-    loadWeatherData()
+    loadAllData()
     const loadInterval = setInterval(()=>{ loadWeatherData()}, 60000);
     return () => clearInterval(loadInterval);
   }, [])
-  
-  const loadCamForData = async () => {
-    const imagesData = await getCamFourFiles('cam4');
-    setImagePath(`${hostPath}${imagesData.path}/${imagesData.imagelist[0].name}`);
+  const loadAllData = async () => {
+     loadWeatherData();
+     loadCamData();
   }
+  const loadCamData = async () => {
+    const imagesData = await getCamFourFiles('cam4');
+    if(!imagesData) return;
+    // setImagePath(`${hostPath}${imagesData.path}/${imagesData.imagelist[0].name}`);
+    if(imagesData.cam1){
+      setImage1Path(`${hostPath}${imagesData.cam1}`)  
+    }
+    if(imagesData.cam2){
+      setImage2Path(`${hostPath}${imagesData.cam2}`)  
+    }
+    if(imagesData.cam3){
+      setImage3Path(`${hostPath}${imagesData.cam3}`)  
+    }
+    if(imagesData.cam4){
+      setImage4Path(`${hostPath}${imagesData.cam4}`)  
+    }
+   
+  }
+  
 
   const loadWeatherData = async () => {
     const weatherData = await getWeatherData();
@@ -71,15 +96,61 @@ export const Home = () => {
     setIsLoadedData(true);
   }
 
-  const handleOpen = () => {
+  const handleOpen = (camNum) => {
+    switch(camNum){
+      case 1:
+        setModalImg(image1Path)
+        break;
+      case 2:
+        setModalImg(image2Path)
+        break;
+      case 3:
+        setModalImg(image3Path)
+        break;
+      case 4:
+        setModalImg(image4Path)
+        break;
+    }
+    
     setEnlargeOpen(true);
   }
 
-  const getImagefiles = async () => {
-    const imgRes = await getReadImgfile();
-    console.log(imgRes);
+  const getTimeLapsImageArr = async (camStr) => {
+    if(camStr !== camTimeVal){
+      const nowDate = new Date();
+      const yearNum = nowDate.getFullYear();
+      const monthNum = nowDate.getMonth() + 1;
+      const dayNum = nowDate.getDate();
+      const path = `${camStr}/${yearNum.toString().padStart(2, '0')}/${monthNum.toString().padStart(2, '0')}/${dayNum.toString().padStart(2, '0')}`
+      const imgRes = await getTimeLapsImgs(path);
+      if(!imgRes) return;
+      // imgRes.sort((a, b) => a.modified - b.modified);
+      console.log(imgRes);
+      setTimelapsImgs(imgRes);
+      handleTimelapsOpen();
+    }else if(timelapsImgs.length < 1) {
+      const nowDate = new Date();
+      const yearNum = nowDate.getFullYear();
+      const monthNum = nowDate.getMonth() + 1;
+      const dayNum = nowDate.getDate();
+      const path = `${camStr}/${yearNum.toString().padStart(2, '0')}/${monthNum.toString().padStart(2, '0')}/${dayNum.toString().padStart(2, '0')}`
+      const imgRes = await getTimeLapsImgs(path);
+      if(!imgRes) return;
+      // imgRes.sort((a, b) => a.modified - b.modified);
+      console.log(imgRes);
+      setTimelapsImgs(imgRes);
+      handleTimelapsOpen();
+    }else{
+      handleTimelapsOpen();
+    }
+    setCamTimeVal(camStr);
   }
-
+const handleTimelapsOpen = () => {
+  setTimelapsOpen(true);
+}
+const handleTimelapsClose = () => {
+  setTimelapsOpen(false);
+}
   return (
     <div>
       <Container>
@@ -89,96 +160,106 @@ export const Home = () => {
               <Box>
                 <Grid container spacing={2} padding={4}>
                   <Grid item xs={6}>
-                    <Card>
+                    <Card sx={{height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between'}}>
                       <CardMedia
                         component="img"
                         alt="Yosemite National Park"
-                        image={imagePath}
-                        onClick={() => {handleOpen()}}
+                        image={image1Path}
+                        onClick={() => {handleOpen(1)}}
                       />
-                      <Stack direction={'row'} alignItems={'center'} justifyContent={'center'} paddingTop={1}>
-                        <Stack direction="column" spacing={0.5} useFlexGap>
-                          <Typography variant='body1' sx={{textAlign: 'center'}}>Camera 1 NW</Typography>
+                      <CardContent sx={{paddingY: '0px !important'}}>
+                        <Stack direction={'row'} alignItems={'center'} justifyContent={'center'} paddingTop={1}>
+                          <Stack direction="column" spacing={0.5} useFlexGap>
+                            <Typography variant='body1' sx={{textAlign: 'center'}}>Camera 1 NW</Typography>
+                          </Stack>
                         </Stack>
-                      </Stack>
-                      <Stack direction="row" alignItems="center" justifyContent="space-between" spacing={3} p={1} useFlexGap>
-                        <Stack direction="column" spacing={0.5} useFlexGap>
-                          <Button onClick={() => {handleOpen()}} variant="outlined" size="small" sx={{padding: "3px"}}>ENLARGE</Button>
+                        <Stack direction="row" alignItems="center" justifyContent="space-between" spacing={3} p={1} useFlexGap>
+                          <Stack direction="column" spacing={0.5} useFlexGap>
+                            <Button onClick={() => {handleOpen(1)}} variant="outlined" size="small" sx={{padding: "3px"}}>ENLARGE</Button>
+                          </Stack>
+                          <Stack direction="column" spacing={0.5} useFlexGap>
+                            <Button onClick={() => {getTimeLapsImageArr('cam1')}} variant="outlined" size="small" sx={{padding: "3px"}}>TIME-LAPSE</Button>
+                          </Stack>
                         </Stack>
-                        <Stack direction="column" spacing={0.5} useFlexGap>
-                          <Button variant="outlined" size="small" sx={{padding: "3px"}}>TIME-LAPSE</Button>
-                        </Stack>
-                      </Stack>
+                      </CardContent>
                     </Card>
                   </Grid>
                   <Grid item xs={6}>
-                    <Card>
+                    <Card sx={{height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between'}}>
                       <CardMedia
                         component="img"
                         alt="Yosemite National Park"
-                        image={imagePath}
-                        onClick={() => {handleOpen()}}
+                        image={image2Path}
+                        onClick={() => {handleOpen(2)}}
                       />
-                      <Stack direction={'row'} alignItems={'center'} justifyContent={'center'} paddingTop={1}>
-                        <Stack direction="column" spacing={0.5} useFlexGap>
-                          <Typography sx={{textAlign: 'center'}}>Camera 2 NE</Typography>
+                      <CardContent sx={{paddingY: '0px !important'}}>
+                        <Stack direction={'row'} alignItems={'center'} justifyContent={'center'} paddingTop={1}>
+                          <Stack direction="column" spacing={0.5} useFlexGap>
+                            <Typography sx={{textAlign: 'center'}}>Camera 2 NE</Typography>
+                          </Stack>
                         </Stack>
-                      </Stack>
-                      <Stack direction="row" alignItems="center" justifyContent="space-between" spacing={3} p={1} useFlexGap>
-                        <Stack direction="column" spacing={0.5} useFlexGap>
-                          <Button onClick={() => {handleOpen()}} variant="outlined" size="small" sx={{padding: "3px"}}>ENLARGE</Button>
+                        <Stack direction="row" alignItems="center" justifyContent="space-between" spacing={3} p={1} useFlexGap>
+                          <Stack direction="column" spacing={0.5} useFlexGap>
+                            <Button onClick={() => {handleOpen(2)}} variant="outlined" size="small" sx={{padding: "3px"}}>ENLARGE</Button>
+                          </Stack>
+                          <Stack direction="column" spacing={0.5} useFlexGap>
+                            <Button variant="outlined" size="small" sx={{padding: "3px"}}>TIME-LAPSE</Button>
+                          </Stack>
                         </Stack>
-                        <Stack direction="column" spacing={0.5} useFlexGap>
-                          <Button variant="outlined" size="small" sx={{padding: "3px"}}>TIME-LAPSE</Button>
-                        </Stack>
-                      </Stack>
-                    </Card>
-                  </Grid>
-                  <Grid item xs={6}>
-                    <Card>
-                      <CardMedia
-                        component="img"
-                        alt="Yosemite National Park"
-                        image={imagePath}
-                        onClick={() => {handleOpen()}}
-                      />
-                      <Stack direction={'row'} alignItems={'center'} justifyContent={'center'} paddingTop={1}>
-                        <Stack direction="column" spacing={0.5} useFlexGap>
-                          <Typography sx={{textAlign: 'center'}}>Camera 4 SW</Typography>
-                        </Stack>
-                      </Stack>
-                      <Stack direction="row" alignItems="center" justifyContent="space-between" spacing={3} p={2} useFlexGap>
-                        <Stack direction='column' spacing={0.5} useFlexGap>
-                          <Button onClick={() => {handleOpen()}} variant="outlined" size="small" sx={{padding: "3px"}}>ENLARGE</Button>
-                        </Stack>
-                        <Stack direction="column" spacing={0.5} useFlexGap>
-                          <Button variant="outlined" size="small" sx={{padding: "3px"}}>TIME-LAPSE</Button>
-                        </Stack>
-                      </Stack>
-                    </Card>
-                  </Grid>
-                  <Grid item xs={6}>
-                    <Card>
-                      <CardMedia
-                        component="img"
-                        alt="Yosemite National Park"
-                        image={imagePath}
-                        onClick={() => {handleOpen()}}
-                      />
-                      <Stack direction={'row'} alignItems={'center'} justifyContent={'center'} paddingTop={1}>
-                        <Stack direction="column" spacing={0.5} useFlexGap>
-                          <Typography sx={{textAlign: 'center'}}>Camera 3 SE</Typography>
-                        </Stack>
-                      </Stack>
-                      <Stack direction="row" alignItems="center" justifyContent="space-between" spacing={3} p={2} useFlexGap>
-                        <Stack direction="column" spacing={0.5} useFlexGap>
-                          <Button onClick={() => {handleOpen()}} variant="outlined" size="small" sx={{padding: "3px"}}>ENLARGE</Button>
-                        </Stack>
+                      </CardContent>
                       
-                        <Stack direction="column" spacing={0.5} useFlexGap>
-                          <Button variant="outlined" sx={{padding: "3px"}} size="small">TIME-LAPSE</Button>
+                    </Card>
+                  </Grid>
+                  <Grid item xs={6}>
+                    <Card sx={{height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between'}}>
+                      <CardMedia
+                        component="img"
+                        alt="Yosemite National Park"
+                        image={image4Path}
+                        onClick={() => {handleOpen(4)}}
+                      />
+                      <CardContent sx={{paddingY: '0px !important'}}>
+                        <Stack direction={'row'} alignItems={'center'} justifyContent={'center'} paddingTop={1}>
+                          <Stack direction="column" spacing={0.5} useFlexGap>
+                            <Typography sx={{textAlign: 'center'}}>Camera 4 SW</Typography>
+                          </Stack>
                         </Stack>
-                      </Stack>
+                        <Stack direction="row" alignItems="center" justifyContent="space-between" spacing={3} p={2} useFlexGap>
+                          <Stack direction='column' spacing={0.5} useFlexGap>
+                            <Button onClick={() => {handleOpen(4)}} variant="outlined" size="small" sx={{padding: "3px"}}>ENLARGE</Button>
+                          </Stack>
+                          <Stack direction="column" spacing={0.5} useFlexGap>
+                            <Button variant="outlined" size="small" sx={{padding: "3px"}}>TIME-LAPSE</Button>
+                          </Stack>
+                        </Stack>
+                      </CardContent>
+                      
+                    </Card>
+                  </Grid>
+                  <Grid item xs={6}>
+                    <Card sx={{height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between'}}>
+                      <CardMedia
+                        component="img"
+                        alt="Yosemite National Park"
+                        image={image3Path}
+                        onClick={() => {handleOpen(3)}}
+                      />
+                      <CardContent sx={{paddingY: '0px !important'}}>
+                        <Stack direction={'row'} alignItems={'center'} justifyContent={'center'} paddingTop={1}>
+                          <Stack direction="column" spacing={0.5} useFlexGap>
+                            <Typography sx={{textAlign: 'center'}}>Camera 3 SE</Typography>
+                          </Stack>
+                        </Stack>
+                        <Stack direction="row" alignItems="center" justifyContent="space-between" spacing={3} p={2} useFlexGap>
+                          <Stack direction="column" spacing={0.5} useFlexGap>
+                            <Button onClick={() => {handleOpen(3)}} variant="outlined" size="small" sx={{padding: "3px"}}>ENLARGE</Button>
+                          </Stack>
+                        
+                          <Stack direction="column" spacing={0.5} useFlexGap>
+                            <Button variant="outlined" sx={{padding: "3px"}} size="small">TIME-LAPSE</Button>
+                          </Stack>
+                        </Stack>
+                      </CardContent>
                     </Card>
                   </Grid>
                 </Grid>
@@ -244,7 +325,26 @@ export const Home = () => {
             </Grid>
           </Grid>
         </Box>
+        <Modal
+    keepMounted
+    open={timelapsOpen}
+    onClose={handleTimelapsClose}
+    aria-labelledby="keep-mounted-modal-title"
+    aria-describedby="keep-mounted-modal-description"
+    >
+      <Box sx={style}>
+        <Carousel>
+      {timelapsImgs.map((imgItem, key) => (
+        <Paper key={key} sx={{textAlign: 'center'}}>
+<img style={{height: '250px', margin: 'auto'}} src={`https://denalicams.com/${imgItem.path}`} />
+<p className="legend" style={{textAlign: 'center'}}>{imgItem.modified}</p>
+        </Paper>
+        
+      ))}
+      </Carousel>
+      </Box>
       
+    </Modal>
         <Modal
           keepMounted
           open={enlargeOpen}
@@ -253,7 +353,7 @@ export const Home = () => {
           aria-describedby="keep-mounted-modal-description"
         >
           <Box sx={style}>
-            <img style={{maxWidth: '500px'}} src={imagePath} onClick={() => getImagefiles()}/>
+            <img style={{maxWidth: '500px'}} src={modalImg} />
           </Box>
         </Modal>
       </Container>

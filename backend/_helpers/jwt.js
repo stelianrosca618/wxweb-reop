@@ -8,6 +8,7 @@ function jwt() {
     return expressJwt({ secret, algorithms: ['HS256'], isRevoked }).unless({
         path: [
             // public routes that don't require authentication
+            '/wximgs/getTimelapsImgs',
             '/wximgs/readImgfile',
             '/wximgs/readCam1Img',
             '/wximgs/readCamImgs',

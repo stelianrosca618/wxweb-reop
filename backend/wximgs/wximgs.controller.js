@@ -4,11 +4,24 @@ const wxImgsService = require('./wximgs.service');
 
 router.post('/readImgfile', readImgfile);
 router.post('/readCam1Img', cam1LatestImg);
-router.post('/readCamImgs', camLatestImg)
+router.post('/readCamImgs', camLatestImg);
+router.post('/getTimelapsImgs', getTimelapsImgs);
 router.post('/readWeatherData', readWeatherData);
 router.post('/readWeadtheTrends', readWeadtheTrends);
 
 module.exports = router;
+
+function getTimelapsImgs(req, res, next) {
+    wxImgsService.getTimelapsImgs(req.body)
+        .then(wxImg => wxImg ? res.json(wxImg) : res.status(400).json({ message: 'There is not data' }))
+        .catch(err => next(err));
+}
+
+function cam1LatestImg (req, res, next) {
+    wxImgsService.latestCam1file(req.body)
+        .then(wxImg => wxImg ? res.json(wxImg) : res.status(400).json({ message: 'There is not data' }))
+        .catch(err => next(err));
+}
 
 function camLatestImg(req, res, next) {
     wxImgsService.latestCamfile(req.body)
@@ -23,11 +36,6 @@ function readImgfile(req, res, next) {
         .catch(err => next(err));
 }
 
-function cam1LatestImg (req, res, next) {
-    wxImgsService.latestCam1file(req.body)
-        .then(wxImg => wxImg ? res.json(wxImg) : res.status(400).json({ message: 'There is not data' }))
-        .catch(err => next(err));
-}
 
 function readWeatherData(req, res, next) {
     wxImgsService.readWeatherData(req.body)

@@ -20,6 +20,24 @@ export const getCamFourFiles = async (camStr) => {
     return camForFiles;
 }
 
+export const getTimeLapsImgs = async (path) => {
+  
+  let weatherData = null;
+    await axios({
+        method:'post',
+        url: `${realPath}/wximgs/getTimelapsImgs`,
+        data: {path},
+      }).then(function (response) {
+        weatherData = response.data;
+        console.log(weatherData);
+      }).catch(function (error) {
+        weatherData = null;
+        console.log('errors', error)
+      })
+
+    return weatherData;
+}
+
 export const getReadImgfile = async (path) => {
   let weatherData = null;
     await axios({

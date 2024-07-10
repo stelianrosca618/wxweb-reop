@@ -15,7 +15,7 @@ const style = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: '60vw',
+  width: '50vw',
   bgcolor: 'background.paper',
   border: '2px solid #000',
   boxShadow: 24,
@@ -23,7 +23,7 @@ const style = {
   px: 4,
   pb: 3,
 };
-const hostPath = 'https://denalicams.com/cam_images/cam4/';
+const hostPath = 'https://denalicams.com/';
 export const Archive = () => {
   const [enlargeOpen, setEnlargeOpen] = React.useState(false);
   const yearlist = [2023, 2024]
@@ -97,23 +97,23 @@ export const Archive = () => {
     if(imagesArr){
       console.log(imagesArr);
       if(imagesArr.cam1){
-        const cam1ImgArr = imagesArr.cam1;
-        const cam1Path = `${hostPath}${tyear.toString().padStart(2, '0')}/${tmonth.toString().padStart(2, '0')}/${tdate.toString().padStart(2, '0')}/${thours.toString().padStart(2, '0')}/${cam1ImgArr[0].name}`
+        const cam1Img = imagesArr.cam1;
+        const cam1Path = `${hostPath}${cam1Img}`
         setCam1Img(cam1Path)
       }
       if(imagesArr.cam2){
-        const cam2ImgArr = imagesArr.cam2;
-        const cam2Path = `${hostPath}${tyear.toString().padStart(2, '0')}/${tmonth.toString().padStart(2, '0')}/${tdate.toString().padStart(2, '0')}/${thours.toString().padStart(2, '0')}/${cam2ImgArr[0].name}`
+        const cam2Img = imagesArr.cam2;
+        const cam2Path = `${hostPath}${cam2Img}`
         setCam2Img(cam2Path)
       }
       if(imagesArr.cam3){
-        const cam3ImgArr = imagesArr.cam3;
-        const cam3Path = `${hostPath}${tyear.toString().padStart(2, '0')}/${tmonth.toString().padStart(2, '0')}/${tdate.toString().padStart(2, '0')}/${thours.toString().padStart(2, '0')}/${cam3ImgArr[0].name}`
+        const cam3Img = imagesArr.cam3;
+        const cam3Path = `${hostPath}${cam3Img}`
         setCam3Img(cam3Path)
       }
       if(imagesArr.cam4){
-        const cam4ImgArr = imagesArr.cam4;
-        const cam4Path = `${hostPath}${tyear.toString().padStart(2, '0')}/${tmonth.toString().padStart(2, '0')}/${tdate.toString().padStart(2, '0')}/${thours.toString().padStart(2, '0')}/${cam4ImgArr[0].name}`
+        const cam4Img = imagesArr.cam4;
+        const cam4Path = `${hostPath}${cam4Img}`
         setCam4Img(cam4Path)
       }
       // const loadingPath = `${hostPath}${tyear.toString().padStart(2, '0')}/${tmonth.toString().padStart(2, '0')}/${tdate.toString().padStart(2, '0')}/${thours.toString().padStart(2, '0')}/${imagesArr[0].name}`
