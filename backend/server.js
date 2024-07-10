@@ -1,10 +1,20 @@
 ﻿require('rootpath')();
+var shell = require('shelljs');
+const cron = require("node-cron");
 const express = require('express');
 const app = express();
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const jwt = require('_helpers/jwt');
 const errorHandler = require('_helpers/error-handler');
+
+
+cron.schedule("*/60 * * * * *", function () {
+    console.log("---------------------");
+    shell.chmod('-R', 'a+rwx', '/home/wxwebappusr/public_html/cam_images/*');
+    console.log("running a task every 60 seconds");
+  });
+  
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());

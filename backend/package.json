@@ -24,7 +24,9 @@
         "ftp": "^0.3.10",
         "ftp-client": "^0.2.2",
         "jsonwebtoken": "^8.5.1",
-        "rootpath": "^0.1.2"
+        "node-cron": "^3.0.3",
+        "rootpath": "^0.1.2",
+        "shelljs": "^0.8.5"
     },
     "devDependencies": {
         "nodemon": "^2.0.4"
