@@ -1,7 +1,7 @@
 import axios from 'axios';
 const apiProd = 'http://164.92.67.83:4000'
 const apiLocal = 'http://localhost:4000'
-const realPath = apiLocal;
+const realPath = apiProd;
 
 export const getCamFourFiles = async (camStr) => {
   let camForFiles = null;
