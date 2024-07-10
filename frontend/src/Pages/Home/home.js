@@ -203,7 +203,7 @@ const handleTimelapsClose = () => {
                             <Button onClick={() => {handleOpen(2)}} variant="outlined" size="small" sx={{padding: "3px"}}>ENLARGE</Button>
                           </Stack>
                           <Stack direction="column" spacing={0.5} useFlexGap>
-                            <Button variant="outlined" size="small" sx={{padding: "3px"}}>TIME-LAPSE</Button>
+                            <Button onClick={() => {getTimeLapsImageArr('cam2')}} variant="outlined" size="small" sx={{padding: "3px"}}>TIME-LAPSE</Button>
                           </Stack>
                         </Stack>
                       </CardContent>
@@ -229,7 +229,7 @@ const handleTimelapsClose = () => {
                             <Button onClick={() => {handleOpen(4)}} variant="outlined" size="small" sx={{padding: "3px"}}>ENLARGE</Button>
                           </Stack>
                           <Stack direction="column" spacing={0.5} useFlexGap>
-                            <Button variant="outlined" size="small" sx={{padding: "3px"}}>TIME-LAPSE</Button>
+                            <Button onClick={() => {getTimeLapsImageArr('cam3')}} variant="outlined" size="small" sx={{padding: "3px"}}>TIME-LAPSE</Button>
                           </Stack>
                         </Stack>
                       </CardContent>
@@ -256,7 +256,7 @@ const handleTimelapsClose = () => {
                           </Stack>
                         
                           <Stack direction="column" spacing={0.5} useFlexGap>
-                            <Button variant="outlined" sx={{padding: "3px"}} size="small">TIME-LAPSE</Button>
+                            <Button onClick={() => {getTimeLapsImageArr('cam4')}} variant="outlined" sx={{padding: "3px"}} size="small">TIME-LAPSE</Button>
                           </Stack>
                         </Stack>
                       </CardContent>
