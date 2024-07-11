@@ -52,7 +52,7 @@ export const Home = () => {
   
   React.useEffect(() => {
     loadAllData()
-    const loadInterval = setInterval(()=>{ loadWeatherData()}, 60000);
+    const loadInterval = setInterval(()=>{ loadAllData()}, 60000);
     return () => clearInterval(loadInterval);
   }, [])
   const loadAllData = async () => {
