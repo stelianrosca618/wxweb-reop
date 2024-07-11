@@ -154,6 +154,7 @@ export const Archive = () => {
               labelId="demo-simple-select-label"
               id="demo-simple-select"
               value={tyear}
+              sx={{color: 'white'}}
               label="Year"
               onChange={(e) => {onYearChange(e)}}
             >
@@ -173,6 +174,7 @@ export const Archive = () => {
               labelId="demo-simple-select-label"
               id="demo-simple-select"
               value={tmonth}
+              sx={{color: 'white'}}
               label="Month"
               onChange={(e) => {onMonthChange(e)}}
             >
@@ -193,6 +195,7 @@ export const Archive = () => {
               id="demo-simple-select"
               value={tdate}
               label="Day"
+              sx={{color: 'white'}}
               onChange={(e) => {onDayChange(e)}}
             >
                {daylist.map((datyItem) => (
@@ -212,6 +215,7 @@ export const Archive = () => {
               labelId="demo-simple-select-label"
               id="demo-simple-select"
               value={thours}
+              sx={{color: 'white'}}
               label="Hour"
               onChange={(e) => {onHourChange(e)}}
             >
@@ -231,6 +235,7 @@ export const Archive = () => {
               labelId="demo-simple-select-label"
               id="demo-simple-select"
               value={tmins}
+              sx={{color: 'white'}}
               label="Min"
               onChange={(e) => {onMinsChange(e)}}
             >
