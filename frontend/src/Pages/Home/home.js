@@ -154,7 +154,7 @@ export const Home = () => {
   return (
     <div>
       {/* <Container> */}
-        <Box sx={{padding: '1rem'}}>
+        <Box sx={{padding: '1rem', height: '100vh'}}>
           <Grid container spacing={2}>
             <Grid item xs={8}>
               <Box>
