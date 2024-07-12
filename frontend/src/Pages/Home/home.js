@@ -145,12 +145,12 @@ export const Home = () => {
     }
     setCamTimeVal(camStr);
   }
-const handleTimelapsOpen = () => {
-  setTimelapsOpen(true);
-}
-const handleTimelapsClose = () => {
-  setTimelapsOpen(false);
-}
+  const handleTimelapsOpen = () => {
+    setTimelapsOpen(true);
+  }
+  const handleTimelapsClose = () => {
+    setTimelapsOpen(false);
+  }
   return (
     <div>
       <Container>
@@ -301,7 +301,7 @@ const handleTimelapsClose = () => {
                 </Grid>
                 <Grid item xs={12} marginY={1}>
                   <Stack direction='column' spacing={2} useFlexGap>
-                    <Typography sx={{textAlign: 'center', fontWeight: 'bold'}} variant="h5">{winddir} &#x2da;@ {windGuest} G {windSpeed}</Typography>
+                    <Typography sx={{textAlign: 'center', fontWeight: 'bold'}} variant="h5">{winddir} &#x2da;@ {windSpeed} G {windGuest}</Typography>
                     <Typography variant='body2' sx={{textAlign: 'center'}}>WIND (KTS)</Typography>
                   </Stack>
                 </Grid>
@@ -314,7 +314,7 @@ const handleTimelapsClose = () => {
                 <Grid item xs={12} sx={{marginTop: '3rem'}}> 
                   <Stack direction='column' textAlign={'center'} spacing={3} useFlexGap>
                     <Link href="/wxtrends" underline="always">
-                      <Button variant="white" size="large">WEATUER TRENDS</Button>
+                      <Button variant="white" size="large">WEATHER TRENDS</Button>
                     </Link>
                     <Link href="/archive" underline="always">
                       <Button variant="white" size="large">ARCHIVE IMAGES</Button>

@@ -107,7 +107,7 @@ export const Trends = () => {
                 xAxis={[{scaleType: 'point', data: xAxisData }]}
                 series={[
                   {data: tempPoints, label: 'TEMPERATURE', showMark: false},
-                  { data: dewPoints, label: 'DEW POINTS', showMark: false},
+                  { data: dewPoints, label: 'DEW POINT', showMark: false},
                   ]}
                 skipAnimation={skipAnimation}
                 height={400}
@@ -118,7 +118,7 @@ export const Trends = () => {
                 xAxis={[{scaleType: 'point', data: xAxisData }]}
                 series={[
                     { data: windSpeeds, label: 'WIND SPEED', showMark: false},
-                    { data: windGuests, label: 'WIND GUEST', showMark: false},
+                    { data: windGuests, label: 'WIND GUST', showMark: false},
                   ]}
                 skipAnimation={skipAnimation}
                 height={400}
@@ -127,6 +127,7 @@ export const Trends = () => {
             <Grid item xs={12}>
               <LineChart
                 xAxis={[{scaleType: 'point', data: xAxisData }]}
+                yAxis={[{min: 1, max: 360, tickNumber: 20}]}
                 series={[
                     { data: windDirs, label: 'WIND DIRECTION', showMark: false},
                   ]}
