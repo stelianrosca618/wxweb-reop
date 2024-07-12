@@ -168,7 +168,7 @@ export const Home = () => {
               <Box height={'100%'}>
                 <Grid container spacing={2}>
                   <Grid item xs={6}>
-                    <Card sx={{position: 'relative', height: '100%', maxHeight: '49vh'}}>
+                    <Card sx={{position: 'relative', height: '100%', maxHeight: '45vh'}}>
                       
                       <CardMedia
                         component="img"
@@ -197,7 +197,7 @@ export const Home = () => {
                     </Card>
                   </Grid>
                   <Grid item xs={6}>
-                    <Card sx={{position: 'relative', height: '100%', maxHeight: '49vh'}}>
+                    <Card sx={{position: 'relative', height: '100%', maxHeight: '45vh'}}>
                       <CardMedia
                         component="img"
                         alt="Yosemite National Park"
@@ -224,7 +224,7 @@ export const Home = () => {
                     </Card>
                   </Grid>
                   <Grid item xs={6}>
-                    <Card sx={{position: 'relative', height: '100%', maxHeight: '49vh'}}>
+                    <Card sx={{position: 'relative', height: '100%', maxHeight: '45vh'}}>
                       <CardMedia
                         component="img"
                         alt="Yosemite National Park"
@@ -251,7 +251,7 @@ export const Home = () => {
                     </Card>
                   </Grid>
                   <Grid item xs={6}>
-                    <Card sx={{position: 'relative', height: '100%', maxHeight: '49vh'}}>
+                    <Card sx={{position: 'relative', height: '100%', maxHeight: '45vh'}}>
                       <CardMedia
                         component="img"
                         alt="Yosemite National Park"
@@ -326,7 +326,7 @@ export const Home = () => {
                     <Typography variant='body2' sx={{textAlign: 'center'}}>BAROMETER (inHg)</Typography>
                   </Stack>
                 </Grid></>}
-                <Grid item xs={12} sx={{marginTop: '3rem'}}> 
+                <Grid item xs={12} sx={{marginTop: 1}}> 
                   <Stack direction='column' textAlign={'center'} spacing={3} useFlexGap>
                     <Link href="/wxtrends" underline="always">
                       <Button variant="outlined" style={mainButtonStyle} >WEATHER TRENDS</Button>
