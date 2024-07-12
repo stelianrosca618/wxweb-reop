@@ -236,9 +236,9 @@ export const Archive = () => {
           <Grid item xs={4}>
           <Box>
             <Container>
-              <Typography sx={{fontWeight: "bold", marginY: 2, textAlign: 'center'}} variant="h3">ARCHIVED IMAGES</Typography> 
+              <Typography sx={{fontWeight: "bold", marginY: 2, textAlign: 'center'}} variant="h4">ARCHIVED IMAGES</Typography> 
               <Stack direction="column" spacing={3} justifyContent="start" alignItems="center" useFlexGap>
-                <FormControl fullWidth>
+                <FormControl fullWidth size='small'>
                   <InputLabel id="demo-simple-select-label">Year</InputLabel>
                   <Select
                     labelId="demo-simple-select-label"
@@ -258,7 +258,7 @@ export const Archive = () => {
                       ))}
                   </Select>
                 </FormControl>
-                <FormControl fullWidth>
+                <FormControl fullWidth size='small'>
                   <InputLabel id="demo-simple-select-label">Month</InputLabel>
                   <Select
                     labelId="demo-simple-select-label"
@@ -278,7 +278,7 @@ export const Archive = () => {
                       ))}
                   </Select>
                 </FormControl>
-                <FormControl fullWidth>
+                <FormControl fullWidth size='small'>
                   <InputLabel id="demo-simple-select-label">Day</InputLabel>
                   <Select
                     labelId="demo-simple-select-label"
@@ -299,7 +299,7 @@ export const Archive = () => {
                   </Select>
                 </FormControl>
                   <span style={{paddingLeft: "30px", paddingRight: "30px"}}></span>
-                <FormControl fullWidth>
+                <FormControl fullWidth size='small'>
                   <InputLabel id="demo-simple-select-label">Hour</InputLabel>
                   <Select
                     labelId="demo-simple-select-label"
@@ -319,7 +319,7 @@ export const Archive = () => {
                       ))}
                   </Select>
                 </FormControl>
-                <FormControl fullWidth>
+                <FormControl fullWidth size='small'>
                   <InputLabel id="demo-simple-select-label">Min</InputLabel>
                   <Select
                     labelId="demo-simple-select-label"
