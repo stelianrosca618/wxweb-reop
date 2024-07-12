@@ -327,7 +327,7 @@ export const Home = () => {
                   </Stack>
                 </Grid></>}
                 <Grid item xs={12} sx={{marginTop: 1}}> 
-                  <Stack direction='column' textAlign={'center'} spacing={3} useFlexGap>
+                  <Stack direction='column' textAlign={'center'} spacing={1} useFlexGap>
                     <Link href="/wxtrends" underline="always">
                       <Button variant="outlined" style={mainButtonStyle} >WEATHER TRENDS</Button>
                     </Link>
