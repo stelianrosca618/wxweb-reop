@@ -41,7 +41,11 @@ async function readWXImgFile(pathData) {
     try {
         const cam1List = await client.list(`/public_html/cam_images/cam1/${pathData.path}`);
         if(cam1List.length > 0){
-            const cam1ImgItem = cam1List[cam1List.length - 1];
+            cam1List.sort((a, b) => {
+                const aDate = new Date(a.modifiedAt);
+                const bDate = new Date(b.modifiedAt);
+                return parseInt(bDate.getTime()) - parseInt(aDate.getTime())});
+            const cam1ImgItem = cam1List[0];
             cam1ImgPath = `cam_images/cam1/${pathData.path}/${cam1ImgItem.name}`
         }
         
@@ -51,7 +55,11 @@ async function readWXImgFile(pathData) {
     try {
         const cam2List = await client.list(`/public_html/cam_images/cam2/${pathData.path}`)
         if(cam2List.length > 0){
-            const cam2ImgItem = cam2List[cam2List.length - 1];
+            cam2List.sort((a, b) => {
+                const aDate = new Date(a.modifiedAt);
+                const bDate = new Date(b.modifiedAt);
+                return parseInt(bDate.getTime()) - parseInt(aDate.getTime())});
+            const cam2ImgItem = cam2List[0];
             cam2ImgPath = `cam_images/cam2/${pathData.path}/${cam2ImgItem.name}`
         }
     } catch (error) {
@@ -60,7 +68,11 @@ async function readWXImgFile(pathData) {
     try {
         const cam3List = await client.list(`/public_html/cam_images/cam3/${pathData.path}`)
         if(cam3List.length > 0){
-            const cam3ImgItem = cam3List[cam3List.length - 1];
+            cam3List.sort((a, b) => {
+                const aDate = new Date(a.modifiedAt);
+                const bDate = new Date(b.modifiedAt);
+                return parseInt(bDate.getTime()) - parseInt(aDate.getTime())});
+            const cam3ImgItem = cam3List[0];
             cam3ImgPath = `cam_images/cam3/${pathData.path}/${cam3ImgItem.name}`
         }
     } catch (error) {
@@ -69,7 +81,11 @@ async function readWXImgFile(pathData) {
     try {
         const cam4List = await client.list(`/public_html/cam_images/cam4/${pathData.path}`);
         if(cam4List.length > 0){
-            const cam4ImgItem = cam4List[cam4List.length - 1];
+            cam4List.sort((a, b) => {
+                const aDate = new Date(a.modifiedAt);
+                const bDate = new Date(b.modifiedAt);
+                return parseInt(bDate.getTime()) - parseInt(aDate.getTime())});
+            const cam4ImgItem = cam4List[0];
             cam4ImgPath = `cam_images/cam4/${pathData.path}/${cam4ImgItem.name}`
         }
     } catch (error) {
