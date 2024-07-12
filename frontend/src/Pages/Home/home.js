@@ -132,7 +132,11 @@ export const Home = () => {
       const path = `${camStr}/${yearNum.toString().padStart(2, '0')}/${monthNum.toString().padStart(2, '0')}/${dayNum.toString().padStart(2, '0')}`
       const imgRes = await getTimeLapsImgs(path);
       if(!imgRes) return;
-      // imgRes.sort((a, b) => a.modified - b.modified);
+      imgRes.sort((a, b) =>  {
+        const aDate = new Date(a.modified);
+        const bDate = new Date(b.modified);
+        return (bDate.getTime() - aDate.getTime())
+      });
       console.log(imgRes);
       setTimelapsImgs(imgRes);
       handleTimelapsOpen();
