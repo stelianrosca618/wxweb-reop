@@ -25,7 +25,15 @@ const style = {
   px: 4,
   pb: 3,
 };
-
+const buttonStyle = {
+  padding: "3px", 
+  color: 'white', 
+  textShadow: ' -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;'
+}
+const mainButtonStyle = {
+ color: 'white', 
+  textShadow: ' -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;'
+}
 export const Home = () => {
   const [enlargeOpen, setEnlargeOpen] = React.useState(false);
   
@@ -155,12 +163,12 @@ export const Home = () => {
     <div>
       {/* <Container> */}
         <Box sx={{padding: '1rem', height: '100vh'}}>
-          <Grid container spacing={2}>
+          <Grid container>
             <Grid item xs={8}>
-              <Box>
+              <Box height={'100%'}>
                 <Grid container spacing={2}>
                   <Grid item xs={6}>
-                    <Card sx={{position: 'relative', height: '100%'}}>
+                    <Card sx={{position: 'relative', height: '100%', maxHeight: '49vh'}}>
                       
                       <CardMedia
                         component="img"
@@ -170,96 +178,101 @@ export const Home = () => {
                       >
                         
                       </CardMedia>
-                      <CardContent sx={{paddingY: '0px !important', position: 'absolute', bottom: 0}}>
-                       
+                      <CardContent sx={{padding: '0px !important', position: 'absolute', bottom: 0, width: '100%'}}>
                         <Stack direction="row" alignItems="center" justifyContent="space-between" spacing={3} p={1} useFlexGap>
                           <Stack direction="column" spacing={0.5} useFlexGap>
-                            <Typography variant='body1' sx={{textAlign: 'center'}}>Camera 1 NW</Typography>
+                            <Typography variant='body1' sx={{textAlign: 'center', fontWeight: 'bold', color: 'white', textShadow: ' -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;'}}>Camera 1 NW</Typography>
                           </Stack>
-                          <Stack direction="column" spacing={0.5} useFlexGap>
-                            <Button onClick={() => {handleOpen(1)}} variant="outlined" size="small" sx={{padding: "3px"}}>ENLARGE</Button>
+                          <Stack direction={'row'}>
+                            <Stack direction="column" spacing={0.5} marginX={1} useFlexGap>
+                              <Button onClick={() => {handleOpen(1)}} variant="outlined" size="small" sx={buttonStyle}>ENLARGE</Button>
+                            </Stack>
+                            <Stack direction="column" spacing={0.5} marginX={1} useFlexGap>
+                              <Button onClick={() => {getTimeLapsImageArr('cam1')}} variant="outlined" size="small" sx={buttonStyle}>TIME-LAPSE</Button>
+                            </Stack>
                           </Stack>
-                          <Stack direction="column" spacing={0.5} useFlexGap>
-                            <Button onClick={() => {getTimeLapsImageArr('cam1')}} variant="outlined" size="small" sx={{padding: "3px"}}>TIME-LAPSE</Button>
-                          </Stack>
+                          
                         </Stack>
                       </CardContent>
                     </Card>
                   </Grid>
                   <Grid item xs={6}>
-                    <Card sx={{position: 'relative', height: '100%'}}>
+                    <Card sx={{position: 'relative', height: '100%', maxHeight: '49vh'}}>
                       <CardMedia
                         component="img"
                         alt="Yosemite National Park"
                         image={image2Path}
                         onClick={() => {handleOpen(2)}}
                       />
-                      <CardContent sx={{paddingY: '0px !important', position: 'absolute', bottom: 0}}>
-                        <Stack direction={'row'} alignItems={'center'} justifyContent={'center'} paddingTop={1}>
-                          <Stack direction="column" spacing={0.5} useFlexGap>
-                            <Typography sx={{textAlign: 'center'}}>Camera 2 NE</Typography>
-                          </Stack>
-                        </Stack>
+                      <CardContent sx={{padding: '0px !important', position: 'absolute', bottom: 0, width: '100%'}}>
                         <Stack direction="row" alignItems="center" justifyContent="space-between" spacing={3} p={1} useFlexGap>
                           <Stack direction="column" spacing={0.5} useFlexGap>
-                            <Button onClick={() => {handleOpen(2)}} variant="outlined" size="small" sx={{padding: "3px"}}>ENLARGE</Button>
+                            <Typography sx={{textAlign: 'center', fontWeight: 'bold', color: 'white', textShadow: ' -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;'}}>Camera 2 NE</Typography>
                           </Stack>
-                          <Stack direction="column" spacing={0.5} useFlexGap>
-                            <Button onClick={() => {getTimeLapsImageArr('cam2')}} variant="outlined" size="small" sx={{padding: "3px"}}>TIME-LAPSE</Button>
+                          <Stack direction={'row'}>
+                            <Stack direction="column" spacing={0.5} marginX={1} useFlexGap>
+                              <Button onClick={() => {handleOpen(2)}} variant="outlined" size="small" sx={buttonStyle}>ENLARGE</Button>
+                            </Stack>
+                            <Stack direction="column" spacing={0.5} marginX={1} useFlexGap>
+                              <Button onClick={() => {getTimeLapsImageArr('cam2')}} variant="outlined" size="small" sx={buttonStyle}>TIME-LAPSE</Button>
+                            </Stack>
                           </Stack>
+                          
                         </Stack>
                       </CardContent>
                       
                     </Card>
                   </Grid>
                   <Grid item xs={6}>
-                    <Card sx={{position: 'relative', height: '100%'}}>
+                    <Card sx={{position: 'relative', height: '100%', maxHeight: '49vh'}}>
                       <CardMedia
                         component="img"
                         alt="Yosemite National Park"
                         image={image4Path}
                         onClick={() => {handleOpen(4)}}
                       />
-                      <CardContent sx={{paddingY: '0px !important', position: 'absolute', bottom: 0}}>
-                        <Stack direction={'row'} alignItems={'center'} justifyContent={'center'} paddingTop={1}>
-                          <Stack direction="column" spacing={0.5} useFlexGap>
-                            <Typography sx={{textAlign: 'center'}}>Camera 4 SW</Typography>
-                          </Stack>
-                        </Stack>
+                      <CardContent sx={{padding: '0px !important', position: 'absolute', bottom: 0, width: '100%'}}>
                         <Stack direction="row" alignItems="center" justifyContent="space-between" spacing={3} p={2} useFlexGap>
-                          <Stack direction='column' spacing={0.5} useFlexGap>
-                            <Button onClick={() => {handleOpen(4)}} variant="outlined" size="small" sx={{padding: "3px"}}>ENLARGE</Button>
-                          </Stack>
                           <Stack direction="column" spacing={0.5} useFlexGap>
-                            <Button onClick={() => {getTimeLapsImageArr('cam3')}} variant="outlined" size="small" sx={{padding: "3px"}}>TIME-LAPSE</Button>
+                            <Typography sx={{textAlign: 'center', fontWeight: 'bold', color: 'white', textShadow: ' -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;'}}>Camera 4 SW</Typography>
                           </Stack>
+                          <Stack direction={'row'}>
+                            <Stack direction='column' spacing={0.5} marginX={1} useFlexGap>
+                              <Button onClick={() => {handleOpen(4)}} variant="outlined" size="small" sx={buttonStyle}>ENLARGE</Button>
+                            </Stack>
+                            <Stack direction="column" spacing={0.5} marginX={1} useFlexGap>
+                              <Button onClick={() => {getTimeLapsImageArr('cam3')}} variant="outlined" size="small" sx={buttonStyle}>TIME-LAPSE</Button>
+                            </Stack>
+                          </Stack>
+                          
                         </Stack>
                       </CardContent>
                       
                     </Card>
                   </Grid>
                   <Grid item xs={6}>
-                    <Card sx={{position: 'relative', height: '100%'}}>
+                    <Card sx={{position: 'relative', height: '100%', maxHeight: '49vh'}}>
                       <CardMedia
                         component="img"
                         alt="Yosemite National Park"
                         image={image3Path}
                         onClick={() => {handleOpen(3)}}
                       />
-                      <CardContent sx={{paddingY: '0px !important', position: 'absolute', bottom: 0}}>
-                        <Stack direction={'row'} alignItems={'center'} justifyContent={'center'} paddingTop={1}>
-                          <Stack direction="column" spacing={0.5} useFlexGap>
-                            <Typography sx={{textAlign: 'center'}}>Camera 3 SE</Typography>
-                          </Stack>
-                        </Stack>
+                      <CardContent sx={{padding: '0px !important', position: 'absolute', bottom: 0, width: '100%'}}>
                         <Stack direction="row" alignItems="center" justifyContent="space-between" spacing={3} p={2} useFlexGap>
                           <Stack direction="column" spacing={0.5} useFlexGap>
-                            <Button onClick={() => {handleOpen(3)}} variant="outlined" size="small" sx={{padding: "3px"}}>ENLARGE</Button>
+                            <Typography sx={{textAlign: 'center', fontWeight: 'bold', color: 'white', textShadow: ' -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;'}}>Camera 3 SE</Typography>
                           </Stack>
-                        
-                          <Stack direction="column" spacing={0.5} useFlexGap>
-                            <Button onClick={() => {getTimeLapsImageArr('cam4')}} variant="outlined" sx={{padding: "3px"}} size="small">TIME-LAPSE</Button>
+                          <Stack direction={'row'}>
+                            <Stack direction="column" spacing={0.5} marginX={1} useFlexGap>
+                              <Button onClick={() => {handleOpen(3)}} variant="outlined" size="small" sx={buttonStyle} >ENLARGE</Button>
+                            </Stack>
+                          
+                            <Stack direction="column" spacing={0.5} marginX={1} useFlexGap>
+                              <Button onClick={() => {getTimeLapsImageArr('cam4')}} variant="outlined" sx={buttonStyle} size="small">TIME-LAPSE</Button>
+                            </Stack>
                           </Stack>
+                          
                         </Stack>
                       </CardContent>
                     </Card>
@@ -316,11 +329,14 @@ export const Home = () => {
                 <Grid item xs={12} sx={{marginTop: '3rem'}}> 
                   <Stack direction='column' textAlign={'center'} spacing={3} useFlexGap>
                     <Link href="/wxtrends" underline="always">
-                      <Button variant="white" size="large">WEATHER TRENDS</Button>
+                      <Button variant="outlined" style={mainButtonStyle} >WEATHER TRENDS</Button>
                     </Link>
                     <Link href="/archive" underline="always">
-                      <Button variant="white" size="large">ARCHIVE IMAGES</Button>
+                      <Button variant="outlined" style={mainButtonStyle} >ARCHIVE IMAGES</Button>
                     </Link>      
+                    <Link href="/#" underline="always">
+                    <Button variant="outlined" style={mainButtonStyle} >ENTER FULLSCREEN</Button>
+                    </Link>
                   </Stack>
                 </Grid>
               </Grid>
