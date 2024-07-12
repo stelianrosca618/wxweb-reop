@@ -153,27 +153,29 @@ export const Home = () => {
   }
   return (
     <div>
-      <Container>
+      {/* <Container> */}
         <Box sx={{padding: '1rem'}}>
           <Grid container spacing={2}>
-            <Grid item xs={7}>
+            <Grid item xs={8}>
               <Box>
-                <Grid container spacing={2} padding={4}>
+                <Grid container spacing={2}>
                   <Grid item xs={6}>
-                    <Card sx={{height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between'}}>
+                    <Card sx={{position: 'relative', height: '100%'}}>
+                      
                       <CardMedia
                         component="img"
                         alt="Yosemite National Park"
                         image={image1Path}
                         onClick={() => {handleOpen(1)}}
-                      />
-                      <CardContent sx={{paddingY: '0px !important'}}>
-                        <Stack direction={'row'} alignItems={'center'} justifyContent={'center'} paddingTop={1}>
+                      >
+                        
+                      </CardMedia>
+                      <CardContent sx={{paddingY: '0px !important', position: 'absolute', bottom: 0}}>
+                       
+                        <Stack direction="row" alignItems="center" justifyContent="space-between" spacing={3} p={1} useFlexGap>
                           <Stack direction="column" spacing={0.5} useFlexGap>
                             <Typography variant='body1' sx={{textAlign: 'center'}}>Camera 1 NW</Typography>
                           </Stack>
-                        </Stack>
-                        <Stack direction="row" alignItems="center" justifyContent="space-between" spacing={3} p={1} useFlexGap>
                           <Stack direction="column" spacing={0.5} useFlexGap>
                             <Button onClick={() => {handleOpen(1)}} variant="outlined" size="small" sx={{padding: "3px"}}>ENLARGE</Button>
                           </Stack>
@@ -185,14 +187,14 @@ export const Home = () => {
                     </Card>
                   </Grid>
                   <Grid item xs={6}>
-                    <Card sx={{height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between'}}>
+                    <Card sx={{position: 'relative', height: '100%'}}>
                       <CardMedia
                         component="img"
                         alt="Yosemite National Park"
                         image={image2Path}
                         onClick={() => {handleOpen(2)}}
                       />
-                      <CardContent sx={{paddingY: '0px !important'}}>
+                      <CardContent sx={{paddingY: '0px !important', position: 'absolute', bottom: 0}}>
                         <Stack direction={'row'} alignItems={'center'} justifyContent={'center'} paddingTop={1}>
                           <Stack direction="column" spacing={0.5} useFlexGap>
                             <Typography sx={{textAlign: 'center'}}>Camera 2 NE</Typography>
@@ -211,14 +213,14 @@ export const Home = () => {
                     </Card>
                   </Grid>
                   <Grid item xs={6}>
-                    <Card sx={{height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between'}}>
+                    <Card sx={{position: 'relative', height: '100%'}}>
                       <CardMedia
                         component="img"
                         alt="Yosemite National Park"
                         image={image4Path}
                         onClick={() => {handleOpen(4)}}
                       />
-                      <CardContent sx={{paddingY: '0px !important'}}>
+                      <CardContent sx={{paddingY: '0px !important', position: 'absolute', bottom: 0}}>
                         <Stack direction={'row'} alignItems={'center'} justifyContent={'center'} paddingTop={1}>
                           <Stack direction="column" spacing={0.5} useFlexGap>
                             <Typography sx={{textAlign: 'center'}}>Camera 4 SW</Typography>
@@ -237,14 +239,14 @@ export const Home = () => {
                     </Card>
                   </Grid>
                   <Grid item xs={6}>
-                    <Card sx={{height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between'}}>
+                    <Card sx={{position: 'relative', height: '100%'}}>
                       <CardMedia
                         component="img"
                         alt="Yosemite National Park"
                         image={image3Path}
                         onClick={() => {handleOpen(3)}}
                       />
-                      <CardContent sx={{paddingY: '0px !important'}}>
+                      <CardContent sx={{paddingY: '0px !important', position: 'absolute', bottom: 0}}>
                         <Stack direction={'row'} alignItems={'center'} justifyContent={'center'} paddingTop={1}>
                           <Stack direction="column" spacing={0.5} useFlexGap>
                             <Typography sx={{textAlign: 'center'}}>Camera 3 SE</Typography>
@@ -265,7 +267,7 @@ export const Home = () => {
                 </Grid>
               </Box>
             </Grid>
-            <Grid item xs={5}>
+            <Grid item xs={4}>
               <Grid container spacing={1} padding={2}>
                 <Grid item xs={12} textAlign={'center'}>
                   <img style={{maxWidth: '100%', maxHeight: "120px", margin: "auto"}} src={weatherBrand}/>
@@ -356,7 +358,7 @@ export const Home = () => {
             <img style={{height: "80vh"}} src={modalImg} />
           </Box>
         </Modal>
-      </Container>
+      {/* </Container> */}
     </div>
   )
 }
