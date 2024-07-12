@@ -353,7 +353,7 @@ export const Home = () => {
           aria-describedby="keep-mounted-modal-description"
         >
           <Box sx={style}>
-            <img style={{maxWidth: '500px'}} src={modalImg} />
+            <img style={{height: "80vh"}} src={modalImg} />
           </Box>
         </Modal>
       </Container>

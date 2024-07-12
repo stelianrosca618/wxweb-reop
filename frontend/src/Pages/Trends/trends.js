@@ -48,6 +48,11 @@ export const Trends = () => {
     let tmpDews = []; let tmpWGuests = [];
     let tmpTemps = []; let tmpWDirs = [];
     let tmpBarometers = [];
+    trendsData.sort((a, b) => {
+      const aDate = new Date(a.date);
+      const bDate = new Date(b.date);
+      return aDate.getTime() - bDate.getTime();
+    })
     trendsData.map(tItem => {
       const itemDate = new Date(tItem.date);
       console.log(itemDate.getDate(), itemDate.getMonth(), itemDate.getHours(), itemDate.getMinutes(), itemDate.getSeconds())
