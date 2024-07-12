@@ -52,7 +52,8 @@ export const Trends = () => {
       const itemDate = new Date(tItem.date);
       console.log(itemDate.getDate(), itemDate.getMonth(), itemDate.getHours(), itemDate.getMinutes(), itemDate.getSeconds())
 
-      tmpXAxis.push(`${itemDate.getHours()}:${itemDate.getMinutes()}`);
+      // tmpXAxis.push(`${itemDate.getHours()}:${itemDate.getMinutes()}`);
+      tmpXAxis.push(itemDate);
       tmpDews.push(tItem.dewPoint)
       tmpTemps.push(tItem.tempf)
       tmpWSpeeds.push(tItem.windspeedmph);
