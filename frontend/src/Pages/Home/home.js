@@ -18,7 +18,7 @@ const style = {
   transform: 'translate(-50%, -50%)',
   width: '80vw',
   maxWidth: '80vw',
-  height: '80vh',
+  height: {md: '80vh', xs: 'auto'},
   textAlign: 'cetner',
   bgcolor: 'background.paper',
   border: '2px solid #000',
@@ -180,10 +180,10 @@ export const Home = () => {
       {/* <Container> */}
         <Box sx={{padding: '1rem', height: '100vh'}}>
           <Grid container>
-            <Grid item xs={8}>
+            <Grid item md={8} xs={12} order={{md: 1, sm: 2, xs: 2}}>
               <Box height={'100%'}>
                 <Grid container spacing={2}>
-                  <Grid item xs={6}>
+                  <Grid item md={6} xs={12} >
                     <Card sx={{position: 'relative', height: '100%', maxHeight: '45vh'}}>
                       
                       <CardMedia
@@ -212,7 +212,7 @@ export const Home = () => {
                       </CardContent>
                     </Card>
                   </Grid>
-                  <Grid item xs={6}>
+                  <Grid item md={6} xs={12}>
                     <Card sx={{position: 'relative', height: '100%', maxHeight: '45vh'}}>
                       <CardMedia
                         component="img"
@@ -239,7 +239,7 @@ export const Home = () => {
                       
                     </Card>
                   </Grid>
-                  <Grid item xs={6}>
+                  <Grid item md={6} xs={12}>
                     <Card sx={{position: 'relative', height: '100%', maxHeight: '45vh'}}>
                       <CardMedia
                         component="img"
@@ -266,7 +266,7 @@ export const Home = () => {
                       
                     </Card>
                   </Grid>
-                  <Grid item xs={6}>
+                  <Grid item md={6} xs={12}>
                     <Card sx={{position: 'relative', height: '100%', maxHeight: '45vh'}}>
                       <CardMedia
                         component="img"
@@ -296,7 +296,7 @@ export const Home = () => {
                 </Grid>
               </Box>
             </Grid>
-            <Grid item xs={4}>
+            <Grid item md={4} xs={12} order={{md: 2, sm: 1, xs: 1}}>
               <Grid container spacing={1} padding={2}>
                 <Grid item xs={12} textAlign={'center'}>
                   <img style={{maxWidth: '100%', maxHeight: "120px", margin: "auto"}} src={weatherBrand}/>
@@ -343,7 +343,7 @@ export const Home = () => {
                   </Stack>
                 </Grid></>}
                 <Grid item xs={12} sx={{marginTop: 1}}> 
-                  <Stack direction='column' textAlign={'center'} spacing={1} useFlexGap>
+                  <Stack direction={'column'} textAlign={'center'} spacing={1} useFlexGap>
                     <Link href="/wxtrends" underline="always">
                       <Button variant="outlined" style={mainButtonStyle} >WEATHER TRENDS</Button>
                     </Link>
@@ -370,7 +370,7 @@ export const Home = () => {
               <Carousel>
               {timelapsImgs.map((imgItem, key) => (
                 <Paper key={key} sx={{textAlign: 'center',height: '80vh', width: '80vw'}}>
-                  <img style={{height: '80vh', width: '60vw', margin: 'auto'}} src={`https://denalicams.com/${imgItem.path}`} />
+                  <img style={{height: {md: '80vh', xs: 'auto'}, width: '60vw', margin: 'auto'}} src={`https://denalicams.com/${imgItem.path}`} />
                   <p className="legend" style={carouselTxt}>{imgItem.modified}</p>
                 </Paper>
               ))}
@@ -386,7 +386,7 @@ export const Home = () => {
           aria-describedby="keep-mounted-modal-description"
         >
           <Box sx={style}>
-            <img style={{height: "80vh"}} src={modalImg} />
+            <img style={{height: {md: '80vh', xs: 'auto'}}} src={modalImg} />
           </Box>
         </Modal>
       {/* </Container> */}

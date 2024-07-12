@@ -155,11 +155,11 @@ export const Archive = () => {
   return (
     <div>
       <Box sx={{padding: '1rem', height: '100vh'}}>
-        <Grid container sx={{paddingX: 2, paddingY: 0}}>
-          <Grid item xs={8}>
+        <Grid container sx={{paddingX: 2, paddingY: 0}} spacing={1}>
+          <Grid item md={8} xs={12} order={{md: 1, xs: 2}}>
             <Box >
               <Grid container spacing={1}>
-                <Grid item xs={6}>
+                <Grid item md={6} xs={12}>
                   <Card sx={{position: 'relative', padding: "0", maxHeight: '45vh'}}>
                     <CardMedia
                       component="img"
@@ -176,7 +176,7 @@ export const Archive = () => {
                     </CardContent>
                   </Card>
                 </Grid>
-                <Grid item xs={6}>
+                <Grid item md={6} xs={12}>
                   <Card sx={{position: 'relative', padding: "0", maxHeight: '45vh'}}>
                     <CardMedia
                       component="img"
@@ -194,7 +194,7 @@ export const Archive = () => {
                     
                   </Card>
                 </Grid>
-                <Grid item xs={6}>
+                <Grid item md={6} xs={12}>
                   <Card sx={{position: 'relative', padding: "0", maxHeight: '45vh'}}>
                     <CardMedia
                       component="img"
@@ -212,7 +212,7 @@ export const Archive = () => {
                     
                   </Card>
                 </Grid>
-                <Grid item xs={6}>
+                <Grid item md={6} xs={12}>
                   <Card sx={{position: 'relative', padding: "0", maxHeight: '45vh'}}>
                     <CardMedia
                       component="img"
@@ -233,119 +233,137 @@ export const Archive = () => {
               </Grid>
             </Box>
           </Grid>
-          <Grid item xs={4}>
-          <Box>
-            <Container>
-              <Typography sx={{fontWeight: "bold", marginY: 2, textAlign: 'center'}} variant="h4">ARCHIVED IMAGES</Typography> 
-              <Stack direction="column" spacing={3} justifyContent="start" alignItems="center" useFlexGap>
-                <FormControl fullWidth size='small'>
-                  <InputLabel id="demo-simple-select-label">Year</InputLabel>
-                  <Select
-                    labelId="demo-simple-select-label"
-                    id="demo-simple-select"
-                    value={tyear}
-                    sx={{color: 'white'}}
-                    label="Year"
-                    onChange={(e) => {onYearChange(e)}}
-                  >
-                    {yearlist.map((yearItem) => (
-                      <MenuItem
-                        key={yearItem}
-                        value={yearItem}
-                      >
-                        {yearItem}
-                      </MenuItem>
-                      ))}
-                  </Select>
-                </FormControl>
-                <FormControl fullWidth size='small'>
-                  <InputLabel id="demo-simple-select-label">Month</InputLabel>
-                  <Select
-                    labelId="demo-simple-select-label"
-                    id="demo-simple-select"
-                    value={tmonth}
-                    sx={{color: 'white'}}
-                    label="Month"
-                    onChange={(e) => {onMonthChange(e)}}
-                  >
-                    {monthlist.map((monthItem) => (
-                      <MenuItem
-                        key={monthItem}
-                        value={monthItem}
-                      >
-                        {monthItem}
-                      </MenuItem>
-                      ))}
-                  </Select>
-                </FormControl>
-                <FormControl fullWidth size='small'>
-                  <InputLabel id="demo-simple-select-label">Day</InputLabel>
-                  <Select
-                    labelId="demo-simple-select-label"
-                    id="demo-simple-select"
-                    value={tdate}
-                    label="Day"
-                    sx={{color: 'white'}}
-                    onChange={(e) => {onDayChange(e)}}
-                  >
-                    {daylist.map((datyItem) => (
-                      <MenuItem
-                        key={datyItem}
-                        value={datyItem}
-                      >
-                        {datyItem}
-                      </MenuItem>
-                      ))}
-                  </Select>
-                </FormControl>
-                  <span style={{paddingLeft: "30px", paddingRight: "30px"}}></span>
-                <FormControl fullWidth size='small'>
-                  <InputLabel id="demo-simple-select-label">Hour</InputLabel>
-                  <Select
-                    labelId="demo-simple-select-label"
-                    id="demo-simple-select"
-                    value={thours}
-                    sx={{color: 'white'}}
-                    label="Hour"
-                    onChange={(e) => {onHourChange(e)}}
-                  >
-                    {hrList.map((hrItem) => (
-                      <MenuItem
-                        key={hrItem}
-                        value={hrItem}
-                      >
-                        {hrItem}
-                      </MenuItem>
-                      ))}
-                  </Select>
-                </FormControl>
-                <FormControl fullWidth size='small'>
-                  <InputLabel id="demo-simple-select-label">Min</InputLabel>
-                  <Select
-                    labelId="demo-simple-select-label"
-                    id="demo-simple-select"
-                    value={tmins}
-                    sx={{color: 'white'}}
-                    label="Min"
-                    onChange={(e) => {onMinsChange(e)}}
-                  >
-                    {minList.map((minItem) => (
-                      <MenuItem
-                        key={minItem}
-                        value={minItem}
-                      >
-                        {minItem}
-                      </MenuItem>
-                      ))}
-                  </Select>
-                </FormControl>
-                <Button variant='outlined' onClick={() => {loadImages()}} sx={mainButtonStyle} fullWidth>Load</Button>
-                <Link href="/" sx={{width: '100%'}}>
-                  <Button variant='outlined' onClick={() => {loadImages()}} sx={mainButtonStyle} fullWidth><ChevronLeftIcon /> Back To Home</Button>
-                </Link>
-              </Stack>
-            </Container>
-          </Box>
+          <Grid item md={4} xs={12} order={{md: 2, xs: 1}}>
+            <Box>
+              <Container>
+                <Typography sx={{fontWeight: "bold", marginY: 2, textAlign: 'center'}} variant="h4">ARCHIVED IMAGES</Typography> 
+                <Box >
+                  <Grid container spacing={1}>
+                    <Grid item md={12} xs={4}  order={{md: 1, xs: 3}}>
+                      <FormControl fullWidth size='small'>
+                        <InputLabel id="demo-simple-select-label">Year</InputLabel>
+                        <Select
+                          labelId="demo-simple-select-label"
+                          id="demo-simple-select"
+                          value={tyear}
+                          sx={{color: 'white'}}
+                          label="Year"
+                          onChange={(e) => {onYearChange(e)}}
+                        >
+                          {yearlist.map((yearItem) => (
+                            <MenuItem
+                              key={yearItem}
+                              value={yearItem}
+                            >
+                              {yearItem}
+                            </MenuItem>
+                            ))}
+                        </Select>
+                      </FormControl>    
+                    </Grid>
+                    <Grid item md={12} xs={4}  order={{md: 2, xs: 4}}>
+                      <FormControl fullWidth size='small'>
+                        <InputLabel id="demo-simple-select-label">Month</InputLabel>
+                        <Select
+                          labelId="demo-simple-select-label"
+                          id="demo-simple-select"
+                          value={tmonth}
+                          sx={{color: 'white'}}
+                          label="Month"
+                          onChange={(e) => {onMonthChange(e)}}
+                        >
+                          {monthlist.map((monthItem) => (
+                            <MenuItem
+                              key={monthItem}
+                              value={monthItem}
+                            >
+                              {monthItem}
+                            </MenuItem>
+                            ))}
+                        </Select>
+                      </FormControl>
+                    </Grid>
+                    <Grid item md={12} xs={4}  order={{md: 3, xs: 5}}>
+                      <FormControl fullWidth size='small'>
+                        <InputLabel id="demo-simple-select-label">Day</InputLabel>
+                        <Select
+                          labelId="demo-simple-select-label"
+                          id="demo-simple-select"
+                          value={tdate}
+                          label="Day"
+                          sx={{color: 'white'}}
+                          onChange={(e) => {onDayChange(e)}}
+                        >
+                          {daylist.map((datyItem) => (
+                            <MenuItem
+                              key={datyItem}
+                              value={datyItem}
+                            >
+                              {datyItem}
+                            </MenuItem>
+                            ))}
+                        </Select>
+                      </FormControl>
+                    </Grid>
+                    <Grid item xs={12} order={{md: 4, xs: 8}}>
+                    <span style={{paddingLeft: "30px", paddingRight: "30px"}}></span>
+                    </Grid>
+                    <Grid item md={12} xs={6} order={{md: 5, xs: 6}}>
+                      <FormControl fullWidth size='small'>
+                        <InputLabel id="demo-simple-select-label">Hour</InputLabel>
+                        <Select
+                          labelId="demo-simple-select-label"
+                          id="demo-simple-select"
+                          value={thours}
+                          sx={{color: 'white'}}
+                          label="Hour"
+                          onChange={(e) => {onHourChange(e)}}
+                        >
+                          {hrList.map((hrItem) => (
+                            <MenuItem
+                              key={hrItem}
+                              value={hrItem}
+                            >
+                              {hrItem}
+                            </MenuItem>
+                            ))}
+                        </Select>
+                      </FormControl>
+                    </Grid>
+                    <Grid item md={12} xs={6} order={{md: 6, xs: 7}}>
+                      <FormControl fullWidth size='small'>
+                        <InputLabel id="demo-simple-select-label">Min</InputLabel>
+                        <Select
+                          labelId="demo-simple-select-label"
+                          id="demo-simple-select"
+                          value={tmins}
+                          sx={{color: 'white'}}
+                          label="Min"
+                          onChange={(e) => {onMinsChange(e)}}
+                        >
+                          {minList.map((minItem) => (
+                            <MenuItem
+                              key={minItem}
+                              value={minItem}
+                            >
+                              {minItem}
+                            </MenuItem>
+                            ))}
+                        </Select>
+                      </FormControl>
+                    </Grid>
+                    <Grid item xs={12} order={{md: 7, xs: 2}}>
+                    <Button variant='contained' onClick={() => {loadImages()}} sx={mainButtonStyle} fullWidth>Load</Button>
+                    </Grid>
+                    <Grid item xs={12} order={{md: 8, xs: 1}}>
+                      <Link href="/" sx={{width: '100%'}}>
+                        <Button variant='outlined' onClick={() => {loadImages()}} sx={mainButtonStyle} fullWidth><ChevronLeftIcon /> Back To Home</Button>
+                      </Link>
+                    </Grid>
+                  </Grid>
+                </Box>
+              </Container>
+            </Box>
           </Grid>
         </Grid>
       </Box>
