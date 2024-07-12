@@ -16,8 +16,10 @@ const style = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: 'auto',
+  width: '80vw',
   maxWidth: '80vw',
+  height: '80vh',
+  textAlign: 'cetner',
   bgcolor: 'background.paper',
   border: '2px solid #000',
   boxShadow: 24,
@@ -32,6 +34,11 @@ const buttonStyle = {
 }
 const mainButtonStyle = {
  color: 'white', 
+  textShadow: ' -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;'
+}
+const carouselTxt = {
+  textAlign: 'center', position: 'absolute', bottom: '20px', width: '100%',
+  color: 'white', 
   textShadow: ' -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;'
 }
 export const Home = () => {
@@ -125,6 +132,7 @@ export const Home = () => {
 
   const getTimeLapsImageArr = async (camStr) => {
     if(camStr !== camTimeVal){
+      setTimelapsImgs([]);
       const nowDate = new Date();
       const yearNum = nowDate.getFullYear();
       const monthNum = nowDate.getMonth() + 1;
@@ -352,25 +360,24 @@ export const Home = () => {
           </Grid>
         </Box>
         <Modal
-    keepMounted
-    open={timelapsOpen}
-    onClose={handleTimelapsClose}
-    aria-labelledby="keep-mounted-modal-title"
-    aria-describedby="keep-mounted-modal-description"
-    >
-      <Box sx={style}>
-        <Carousel>
-      {timelapsImgs.map((imgItem, key) => (
-        <Paper key={key} sx={{textAlign: 'center'}}>
-<img style={{height: '250px', margin: 'auto'}} src={`https://denalicams.com/${imgItem.path}`} />
-<p className="legend" style={{textAlign: 'center'}}>{imgItem.modified}</p>
-        </Paper>
-        
-      ))}
-      </Carousel>
-      </Box>
-      
-    </Modal>
+          keepMounted
+          open={timelapsOpen}
+          onClose={handleTimelapsClose}
+          aria-labelledby="keep-mounted-modal-title"
+          aria-describedby="keep-mounted-modal-description"
+        >
+            <Box sx={style}>
+              <Carousel>
+              {timelapsImgs.map((imgItem, key) => (
+                <Paper key={key} sx={{textAlign: 'center',height: '80vh', width: '80vw'}}>
+                  <img style={{height: '80vh', width: '60vw', margin: 'auto'}} src={`https://denalicams.com/${imgItem.path}`} />
+                  <p className="legend" style={carouselTxt}>{imgItem.modified}</p>
+                </Paper>
+              ))}
+              </Carousel>
+            </Box>
+            
+        </Modal>
         <Modal
           keepMounted
           open={enlargeOpen}
