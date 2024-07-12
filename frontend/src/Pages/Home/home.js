@@ -249,7 +249,7 @@ export const Home = () => {
                               <Button onClick={() => {handleOpen(4)}} variant="outlined" size="small" sx={buttonStyle}>ENLARGE</Button>
                             </Stack>
                             <Stack direction="column" spacing={0.5} marginX={1} useFlexGap>
-                              <Button onClick={() => {getTimeLapsImageArr('cam3')}} variant="outlined" size="small" sx={buttonStyle}>TIME-LAPSE</Button>
+                              <Button onClick={() => {getTimeLapsImageArr('cam4')}} variant="outlined" size="small" sx={buttonStyle}>TIME-LAPSE</Button>
                             </Stack>
                           </Stack>
                           
@@ -277,7 +277,7 @@ export const Home = () => {
                             </Stack>
                           
                             <Stack direction="column" spacing={0.5} marginX={1} useFlexGap>
-                              <Button onClick={() => {getTimeLapsImageArr('cam4')}} variant="outlined" sx={buttonStyle} size="small">TIME-LAPSE</Button>
+                              <Button onClick={() => {getTimeLapsImageArr('cam3')}} variant="outlined" sx={buttonStyle} size="small">TIME-LAPSE</Button>
                             </Stack>
                           </Stack>
                           
