@@ -139,6 +139,7 @@ export const Trends = () => {
             <Grid item xs={12}>
                 <LineChart
                   xAxis={[{scaleType: 'point', data: xAxisData }]}
+                  yAxis={[{tickNumber: 25}]}
                   series={[
                     { data: baromaters, label: 'BAROMENTIC PRESSURE', showMark: false},
                   ]}
